@@ -6,8 +6,6 @@
 // 26(1,0,1) 55(1,1,1)
 
 using static System.Console;
-const int ROW = 0;
-const int COLUMN = 1;
 
 Clear();
 

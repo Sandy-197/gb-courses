@@ -4,11 +4,9 @@ N = 5-> "1, 2, 3, 4, 5"
 N = 6-> "1, 2, 3, 4, 5, 6"
 */
 
-usign System;
-usign static System.Console;
-Clear();
+Console.Clear();
 int n = int.Parse(Prompt("Введите количество строк массива: "));
-WriteLine(PrintNumbers(n));
+Console.WriteLine(PrintNumbers(n));
 
 string Prompt(string intro, bool oneline = true)
 {

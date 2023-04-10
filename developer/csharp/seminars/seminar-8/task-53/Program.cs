@@ -9,6 +9,9 @@
 //     5 9 2 3
 //     1 4 7 2
 
+const int ROW = 0;
+const int COLUMN = 1;
+
 int m = int.Parse(Prompt("Введите количество строк массива: "));
 int n = int.Parse(Prompt("Введите количество строк массива: "));
 
@@ -41,8 +44,8 @@ void PrintArray(int[,] inArray)
     {
         for (int j = 0; j < inArray.GetLength(COLUMN); j++)
         {
-            Write($"{inArray[i, j]} ");
+            Console.Write($"{inArray[i, j]} ");
         }
-        WriteLine();
+        Console.WriteLine();
     }
 }
