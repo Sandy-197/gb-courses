@@ -15,4 +15,4 @@ def pow(a, b) -> int:
 
 a = int(input("Введите целое число: "))
 b = int(input(f"Введите степень, в которую надо возвести число {a}: "))
-print(f"{a}^{b}={pow(a,b)}")
+print(f"{a} ^ {b} = {pow(a,b)}")
