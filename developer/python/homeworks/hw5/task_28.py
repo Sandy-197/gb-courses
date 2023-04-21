@@ -10,4 +10,7 @@ def sum(a, b) -> int:
     if b > a: a, b = b, a
     return a if b == 0 else sum(a + 1, b - 1)
 
-print(sum(14, 15))
+first = int(input("Введите первое слагаемое: "))
+second = int(input("Введите второе слагаемое: "))
+
+print(f"{first} + {second} = {sum(first, second)}")
