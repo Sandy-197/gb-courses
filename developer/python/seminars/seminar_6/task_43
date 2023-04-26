@@ -1,0 +1,20 @@
+"""Дан список чисел. Посчитайте, сколько в нем пар элементов, равных друг другу. Считается, что любые два элемента,
+равные друг другу образуют одну пару, которую необходимо посчитать.
+Вводится список чисел. Все числа списка находятся на разных строках."""
+
+from random import randint
+lst = [randint(1,10) for i in range(10)]
+print(lst)
+count = 0
+for item in set(lst):
+    count += lst.count(item)//2
+
+print(count)
+
+counter = 0
+for i in range(len(lst)):
+    counter += lst[i+1:].count(lst[i])
+
+print(counter)
+
+print (5)
