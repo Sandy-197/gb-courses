@@ -35,7 +35,7 @@ def print_operation_table(func, num_rows=6, num_columns=6):
 
 
 def print_operation_table_one_line(func, num_rows=6, num_columns=6):
-    print('\n'.join('\t'.join(str(func(c, r))
+    print('\n'.join(''.join(f"{func(c, r):>4}"
           for c in range(1, num_columns+1)) for r in range(1, num_rows+1)))
 
 
