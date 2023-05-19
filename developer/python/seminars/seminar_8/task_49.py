@@ -15,11 +15,14 @@
 # Гарантируется, что самая далекая планета ровно одна.
 import random
 
+
 def find_farthest_orbit(lst):
-    return max(map(lambda item: (item, item[0]*item[1]), filter(lambda item: item[0] != item[1], lst)), key=lambda item: item[1])
+    return max(map(lambda item: (item[0]*item[1], item), filter(lambda item: item[0] != item[1], lst)))
+
 
 orbits = [(random.randint(1, 10), random.randint(1, 10))
           for _ in range(int(input("Введите колво планет: ")))]
+
 print(orbits, find_farthest_orbit(orbits))
 
-# print(max(map(lambda item: (item,item[0]*item[1]),filter(lambda item: item[0]!=item[1],orbits:=[(random.randint(1,10),random.randint(1,10)) for _ in range(int(input("Введите колво планет: ")))])),key=lambda item:item[1]),orbits)
+# print(max(map(lambda item: (item[0]*item[1],item),filter(lambda item: item[0]!=item[1],orbits:=[(random.randint(1,10),random.randint(1,10)) for _ in range(int(input("Введите колво планет: ")))]))),orbits)
