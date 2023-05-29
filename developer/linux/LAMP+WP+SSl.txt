@@ -1,0 +1,98 @@
+# Статья LAMP+Wordpress+SSL - https://dzen.ru/media/www_techplanet_pro/sozdanie-virtualnoi-mashiny-ubuntu-na-yandex-cloud-627d02846a22ad01885addb4
+
+
+sudo apt install mysql-server mysql-client -y
+sudo mysql
+CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE USER 'wordpressuser'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL ON wordpress.* TO 'wordpressuser'@'localhost';
+FLUSH PRIVILEGES;
+exit
+sudo apt install wordpress apache2 php libapache2-mod-php php-mysql php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip -y
+sudo systemctl restart apache2
+apachectl -M | grep -i rewrite_module
+sudo bash -c 'cat > /etc/apache2/sites-available/wordpress.conf <<EOF
+Alias /blog /usr/share/wordpress
+<Directory /usr/share/wordpress>
+    Options FollowSymLinks
+    AllowOverride All
+    DirectoryIndex index.php
+    Order allow,deny
+    Allow from all
+</Directory>
+<Directory /usr/share/wordpress/wp-content>
+    Options FollowSymLinks
+    Order allow,deny
+    Allow from all
+</Directory>
+EOF'
+sudo ln -s /etc/apache2/sites-available/wordpress.conf /etc/apache2/sites-enabled/wordpress.conf
+sudo cp /usr/share/wordpress/wp-config-sample.php /etc/wordpress/config-default.php
+sudo sed -i 's/database_name_here/wordpress/' /etc/wordpress/config-default.php
+sudo sed -i 's/username_here/wordpressuser/' /etc/wordpress/config-default.php
+sudo sed -i 's/password_here/password/' /etc/wordpress/config-default.php
+sudo sed -i 's/define( .DB_COLLATE., .. );/define( \x27DB_COLLATE\x27, \x27utf8_unicode_ci\x27 );/' /etc/wordpress/config-default.php
+sudo systemctl restart apache2
+udo chown www-data:www-data -R /usr/share/wordpress
+sudo find /usr/share/wordpress -type d -exec chmod 755 {} \;
+sudo find /usr/share/wordpress -type f -exec chmod 644 {} \;
+sudo unlink /etc/apache2/sites-enabled/wordpress.conf
+sudo ln -s /etc/apache2/sites-available/www.158.160.72.219.nip.io.conf /etc/apache2/sites-enabled/www.158.160.72.219.nip.io.conf
+
+
+wp_admin
+aGCp9MTTLZ^hOTZP2^
+
+#Получение сертификата SSL Lets encript
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt install certbot python3-certbot-apache -y
+sudo certbot --apache -d www.158.160.72.219.nip.io -d 158.160.72.219.nip.io -d mail.158.160.72.219.nip.io
+email@la.ru
+Agree
+No
+
+#замена порта 
+sudo sed -i 's/:80/:8080/' /etc/apache2/sites-available/www.51.250.107.122.nip.io.conf
+sudo sed -i 's/:443/:8081/' /etc/apache2/sites-available/www.158.160.72.219.nip.io-le-ssl.conf
+sudo unlink /etc/apache2/sites-enabled/000-default.conf
+sudo sed -i 's/Listen 80/Listen 8080/' /etc/apache2/ports.conf
+sudo sed -i 's/Listen 443/Listen 8081/' /etc/apache2/ports.conf
+sudo systemctl restart apache2
+
+#nginx
+sudo bash -c 'cat > /etc/nginx/sites-enabled/default <<EOF
+server {
+        listen 80 default_server;
+        server_name _;
+        location / {
+                proxy_pass http://127.0.0.1:8080;
+                proxy_set_header Host \$host;
+                proxy_set_header X-Real-IP \$remote_addr;
+                proxy_set_header X-Forwarded-Host \$host;
+                proxy_set_header X-Forwarded-Server \$host;
+                proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto \$scheme;
+                proxy_set_header X-Server-Address  \$server_addr;
+        }
+}
+EOF'
+sudo systemctl restart nginx
+sudo bash -c 'cat >> /etc/nginx/sites-enabled/default <<EOF
+server {
+       listen 443 ssl default_server;
+       server_name _;
+        ssl_certificate /etc/letsencrypt/live/www.158.160.72.219.nip.io/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/www.158.160.72.219.nip.io/privkey.pem;
+       location / {
+               proxy_pass https://127.0.0.1:8081;
+               proxy_set_header Host \$host;
+               proxy_set_header X-Real-IP \$remote_addr;
+               proxy_set_header X-Forwarded-Host \$host;
+               proxy_set_header X-Forwarded-Server \$host;
+               proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+               proxy_set_header X-Forwarded-Proto \$scheme;
+               proxy_set_header X-Server-Address  \$server_addr;
+       }
+}
+EOF'
+sudo systemctl restart nginx

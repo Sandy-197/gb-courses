@@ -1,0 +1,22 @@
+#!/bin/bash
+
+dr=$1
+
+if [ -z $dr ]
+	then
+		echo 'Error 1. There should be one parametr. The name of diirectory.'
+		exit 1
+fi
+
+if [ ! -d $dr ]
+	then
+		echo "Error 2. Directory $dr not found."
+		exit 2
+fi
+
+if [ "${dr: -1}" != "/" ]
+	then
+		dr+="/"
+fi
+
+rm -f $dr*.{bak,tmp,backup}
