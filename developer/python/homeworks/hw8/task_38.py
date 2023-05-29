@@ -76,7 +76,7 @@ def readDataTxt():
             if len(temp) > 0:
                 for i in range(len(temp)):
                     tmp = temp[i].split(':')
-                    if len(tmp)==3:
+                    if len(tmp) == 3:
                         data[int(tmp[0])] = {'name': tmp[1], 'phone': tmp[2]}
             else:
                 print(f"Error. Phonebook {fileNameTxt} is empty.")
@@ -146,7 +146,6 @@ def menuContacts(menu):
 
 
 command = -1
-readDataTxt()
 
 while command != 0:
     print("Меню:")
