@@ -1,5 +1,5 @@
 public class task {
-    public class MyTree {
+    public static class MyTree {
         private Node root;
 
         private enum Color {
@@ -13,6 +13,10 @@ public class task {
             private Color color;
         }
 
+        public Node getNode() {
+            return root;
+        }
+        
         public boolean contains(int value) {
             Node currNode = root;
             while (currNode != null) {
@@ -128,11 +132,13 @@ public class task {
     }
 
     public static void main(String[] args) {
-        MyTree myTree = new MyTree();
-        // myTree.add(5);
-        // myTree.add(6);
-        // myTree.add(7);
-
-        // System.out.println(myTree);
+        task.MyTree myTree=new task.MyTree();
+        myTree.add(5);
+        myTree.add(6);
+        myTree.add(7);
+        myTree.add(9);
+        myTree.add(1);
+        myTree.add(4);
+        System.out.println(myTree.getNode().left.color);
     }
 }
