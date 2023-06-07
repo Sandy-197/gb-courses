@@ -16,7 +16,25 @@ public class task {
         public Node getNode() {
             return root;
         }
-        
+        // решение рекурсией
+        // public boolean contains(V value) {
+        // if (root == null){
+        // return false;
+        // }
+        // return contains(root, value);
+        // }
+
+        // private boolean contains(Node node, V value) {
+        //     if (node.value.equals(value)) {
+        //         return true;
+        //     } else {
+        //         if (node.value.compareTo(value) > 0) {
+        //             return contains(node.left, value);
+        //         } else {
+        //             return contains(node.right, value);
+        //         }
+        //     }
+        // }
         public boolean contains(int value) {
             Node currNode = root;
             while (currNode != null) {
