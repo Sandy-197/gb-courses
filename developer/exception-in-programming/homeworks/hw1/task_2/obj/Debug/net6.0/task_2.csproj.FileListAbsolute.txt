@@ -1,0 +1,15 @@
+D:\Users\User\Documents\sasha\gb-courses\developer\exception-in-programming\homeworks\hw1\task_2\obj\Debug\net6.0\task_2.csproj.AssemblyReference.cache
+D:\Users\User\Documents\sasha\gb-courses\developer\exception-in-programming\homeworks\hw1\task_2\obj\Debug\net6.0\task_2.GeneratedMSBuildEditorConfig.editorconfig
+D:\Users\User\Documents\sasha\gb-courses\developer\exception-in-programming\homeworks\hw1\task_2\obj\Debug\net6.0\task_2.AssemblyInfoInputs.cache
+D:\Users\User\Documents\sasha\gb-courses\developer\exception-in-programming\homeworks\hw1\task_2\obj\Debug\net6.0\task_2.AssemblyInfo.cs
+D:\Users\User\Documents\sasha\gb-courses\developer\exception-in-programming\homeworks\hw1\task_2\obj\Debug\net6.0\task_2.csproj.CoreCompileInputs.cache
+D:\Users\User\Documents\sasha\gb-courses\developer\exception-in-programming\homeworks\hw1\task_2\bin\Debug\net6.0\task_2.exe
+D:\Users\User\Documents\sasha\gb-courses\developer\exception-in-programming\homeworks\hw1\task_2\bin\Debug\net6.0\task_2.deps.json
+D:\Users\User\Documents\sasha\gb-courses\developer\exception-in-programming\homeworks\hw1\task_2\bin\Debug\net6.0\task_2.runtimeconfig.json
+D:\Users\User\Documents\sasha\gb-courses\developer\exception-in-programming\homeworks\hw1\task_2\bin\Debug\net6.0\task_2.dll
+D:\Users\User\Documents\sasha\gb-courses\developer\exception-in-programming\homeworks\hw1\task_2\bin\Debug\net6.0\task_2.pdb
+D:\Users\User\Documents\sasha\gb-courses\developer\exception-in-programming\homeworks\hw1\task_2\obj\Debug\net6.0\task_2.dll
+D:\Users\User\Documents\sasha\gb-courses\developer\exception-in-programming\homeworks\hw1\task_2\obj\Debug\net6.0\refint\task_2.dll
+D:\Users\User\Documents\sasha\gb-courses\developer\exception-in-programming\homeworks\hw1\task_2\obj\Debug\net6.0\task_2.pdb
+D:\Users\User\Documents\sasha\gb-courses\developer\exception-in-programming\homeworks\hw1\task_2\obj\Debug\net6.0\task_2.genruntimeconfig.cache
+D:\Users\User\Documents\sasha\gb-courses\developer\exception-in-programming\homeworks\hw1\task_2\obj\Debug\net6.0\ref\task_2.dll
