@@ -1,5 +1,3 @@
-import java.io.FileNotFoundException;
-
 public class task_3 {
     public static void main(String[] args) throws Exception {
         try {
@@ -18,7 +16,7 @@ public class task_3 {
         }
     }
 
-    public static void printSum(Integer a, Integer b) throws FileNotFoundException {
+    public static void printSum(Integer a, Integer b) {
         System.out.println(a + b);
     }
 
