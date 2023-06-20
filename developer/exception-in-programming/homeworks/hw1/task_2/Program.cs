@@ -30,7 +30,7 @@ int[]? DiffElements(int[] array_a, int[] array_b)
 // int[] array_b = {7, 6, 5, 4, 3, 2};
 
 // Вараинт, когда один null. Ну тут сам dotnet не дает сильно с null играть :) надо спец тип объявлять
-int[] array_a = null; //{1, 2, 3, 4, 6, 7, 8};
+int[] array_a = {1, 2, 3, 4, 6, 7, 8};
 int[] array_b = {7, 6, 5, 4, 3, 2};
 
 
