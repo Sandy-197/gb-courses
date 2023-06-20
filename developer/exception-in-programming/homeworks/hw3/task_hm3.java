@@ -36,7 +36,6 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-public class task_hm3 {
     public static void main(String[] args) {
         String[] myStr;
         // Существет проблемма с русскими символами в Scanner
@@ -138,7 +137,7 @@ public class task_hm3 {
             return false;
         }
     }
-}
+
 
 class MyCountException extends RuntimeException {
     public MyCountException(String s) {
