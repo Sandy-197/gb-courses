@@ -9,8 +9,8 @@
 //     5 9 2 3
 //     1 4 7 2
 
-const int ROW = 0;
-const int COLUMN = 1;
+// const int ROW = 0;
+// const int COLUMN = 1;
 
 int m = int.Parse(Prompt("Введите количество строк массива: "));
 int n = int.Parse(Prompt("Введите количество строк массива: "));
@@ -22,30 +22,30 @@ string Prompt(string intro, bool oneline = true)
     return res;
 }
 
-int[,] GetArray(int row, int column, int minValue = 0, int maxValue = 0)
-{
-    int[,] result = new int[row, column];
-    if (!(minValue == 0 && maxValue == 0))
-    {
-        for (int i = 0; i < m; i++)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                result[i, j] = new Random().Next(minValue, maxValue + 1);
-            }
-        }
-    }
-    return result;
-}
+// int[,] GetArray(int row, int column, int minValue = 0, int maxValue = 0)
+// {
+//     int[,] result = new int[row, column];
+//     if (!(minValue == 0 && maxValue == 0))
+//     {
+//         for (int i = 0; i < m; i++)
+//         {
+//             for (int j = 0; j < n; j++)
+//             {
+//                 result[i, j] = new Random().Next(minValue, maxValue + 1);
+//             }
+//         }
+//     }
+//     return result;
+// }
 
-void PrintArray(int[,] inArray)
-{
-    for (int i = 0; i < inArray.GetLength(ROW); i++)
-    {
-        for (int j = 0; j < inArray.GetLength(COLUMN); j++)
-        {
-            Console.Write($"{inArray[i, j]} ");
-        }
-        Console.WriteLine();
-    }
-}
+// void PrintArray(int[,] inArray)
+// {
+//     for (int i = 0; i < inArray.GetLength(ROW); i++)
+//     {
+//         for (int j = 0; j < inArray.GetLength(COLUMN); j++)
+//         {
+//             Console.Write($"{inArray[i, j]} ");
+//         }
+//         Console.WriteLine();
+//     }
+// }
