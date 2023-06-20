@@ -81,7 +81,7 @@ else Console.WriteLine("[" + string.Join(", ", resArray) + "]");
 // можно еще вызвать расширенную информацию если в try использовать переменную для сохранения ошибки.
 Console.WriteLine("\nВариант 2.");
 int[]? resArray2 = DivElementsExeption(array_a, array_b);
-if (resArray == null)
+if (resArray2 == null)
 {
     Console.WriteLine("Ошибка. Массивы разной длинны!");
     return;
