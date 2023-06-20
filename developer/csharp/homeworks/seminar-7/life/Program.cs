@@ -156,17 +156,17 @@ void PrintTwoDemensionsArrayChar(char[,] inArray)
     }
 }
 // Печатает 2-мерный массив из целочисленного массива
-void PrintTwoDemensionsArray(int[,] inArray)
-{
-    for (int r = 0; r < inArray.GetLength(ROW); r++)
-    {
-        for (int c = 0; c < inArray.GetLength(COLUMN); c++)
-        {
-            Write($"{inArray[r, c]} ");
-        }
-        WriteLine();
-    }
-}
+// void PrintTwoDemensionsArray(int[,] inArray)
+// {
+//     for (int r = 0; r < inArray.GetLength(ROW); r++)
+//     {
+//         for (int c = 0; c < inArray.GetLength(COLUMN); c++)
+//         {
+//             Write($"{inArray[r, c]} ");
+//         }
+//         WriteLine();
+//     }
+// }
 // Изменяет размреность массива для создания мира
 int[,] ResizeMassive(int[,] array)
 {
