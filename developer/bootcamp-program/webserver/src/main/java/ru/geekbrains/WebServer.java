@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 
 public class WebServer {
 
-    private static String WWW = "/Users/User/Documents/sasha/gb-learning/developer/bootcamp-program/webserver/www";
+    private static String WWW = "D:\\Users\\User\\Documents\\sasha\\gb-courses\\developer\\bootcamp-program\\webserver\\www";
 
     public static void main(String[] args) {
         try (ServerSocket serverSocket = new ServerSocket(8080)) {
@@ -46,6 +46,7 @@ public class WebServer {
             }
 
             Path path = Paths.get(WWW, parts[1]);
+            System.out.println(path);
             if (!Files.exists(path)) {
                 output.println("HTTP/1.1 404 NOT_FOUND");
                 output.println("Content-Type: text/html; charset=utf-8");
