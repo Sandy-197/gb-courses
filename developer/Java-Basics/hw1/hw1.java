@@ -1,6 +1,8 @@
 import java.util.Arrays;
 import java.util.Random;
 
+import java.util.Scanner;
+
 public class hw1 {
     // 1. Генерация случайного от нуля до n;
     public static int GetRandomInt(int n) {
