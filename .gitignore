@@ -2,3 +2,4 @@ certificates/
 *.pdf
 *.docx
 .vscode
+sort_log.txt
