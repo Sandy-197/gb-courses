@@ -1,4 +1,4 @@
-abstract public class units {
+abstract public class Units implements InGameInterface {
     public String name; // название юнита
     public int healthPoints; // общее здоровье, начальное значение всегда 100%
     public int shieldPoints; // количество щита, у каждого юнита оно разное
@@ -8,7 +8,7 @@ abstract public class units {
     public int step; // кол-во клеток, на которое может передвигаться юнит
     public boolean canHealth; // может ли юнит лечить
 
-    public units(String name, int shieldPoints, int attackPoints, int attackStep, int initiative, int step,
+    public Units(String name, int shieldPoints, int attackPoints, int attackStep, int initiative, int step,
             boolean canHealth) {
         this.name = name;
         this.healthPoints = 100;
@@ -20,4 +20,12 @@ abstract public class units {
         this.canHealth = canHealth;
     }
 
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    public void step() {
+
+    }
 }
