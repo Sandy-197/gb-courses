@@ -1,193 +1,134 @@
 package homework_4;
 
-
-// Организовать вводи и хранение данных пользователей. ФИО возраст и пол
-// вывод в формате Фамилия И.О. возраст пол
-// добавить возможность выхода или вывода списка отсортированного по возрасту!)
-// *реализовать сортировку по возрасту с использованием индексов
-// *реализовать сортировку по возрасту и полу с использованием индексов
-
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Scanner;
+// 1. Пусть дан LinkedList с несколькими элементами. Реализуйте метод, который вернет “перевернутый” список.
+// 2 *. Реализуйте очередь с помощью LinkedList со следующими методами:
+// enqueue() - помещает элемент в конец очереди,
+// dequeue() - возвращает первый элемент из очереди и удаляет его,
+// first() - возвращает первый элемент из очереди, не удаляя.
+// Это задание повышенной сложности, для решения задачи потребуется создать класс-обертку над LinkedList, например:
+// class MyQueue {
+//     private LinkedList elements = new LinkedList();
+//     public MyQueue() { }
+//     public MyQueue(LinkedList linkedList) {
+//         this.elements = linkedList;
+//     }
+//         .........
+// }
+// 3. В калькулятор (урок 1 и 2) добавьте возможность отменить последнюю операцию.
+
 
 public class homework_4 {
-    enum SortBy {
-        NONE, AGE, AGE_AND_GENDER;
-    };
+    // Существет проблема в VSCode с русскими символами в Scanner
+    static String encoding = System.getProperty("console.encoding", "UTF-8");
+    static Scanner scanner = new Scanner(System.in, encoding);
 
     public static void main(String[] args) {
-        ArrayList<String> lastNames = new ArrayList<>();
-        ArrayList<String> firstNames = new ArrayList<>();
-        ArrayList<String> surNames = new ArrayList<>();
-        ArrayList<Integer> ages = new ArrayList<>();
-        ArrayList<String> genders = new ArrayList<>();
-        // Существет проблема с русскими символами в Scanner
-        String encoding = System.getProperty("console.encoding", "UTF-8");
-        Scanner scanner = new Scanner(System.in, encoding);
-
-        String[] inputFieldNames = new String[] { "ФИО", "Пол (1. Мужской, 2. Женский)", "Возраст" };
-        String[] inputFields = new String[inputFieldNames.length];
-
-        boolean input = true;
-        boolean add;
-
-        while (input) {
-            add = true;
-
-            for (int i = 0; i < inputFields.length; i++) {
-                // проверяем ввод пустой строки
-                do {
-                    inputFields[i] = inputData(scanner, inputFieldNames[i]).strip();
-                } while (inputFields[i].length() == 0);
-
-                // выход
-                if (inputFields[i].equals("exit")) {
-                    input = false;
-                    add = false;
-                    break;
-                }
-                // вывод
-                if (inputFields[i].equals("show")) {
-                    add = false;
-                    System.out.println("Без сортировки:");
-                    showPersons(lastNames, firstNames, surNames, ages, genders, SortBy.NONE);
-                    System.out.println("-----------------");
-                    System.out.println("Сортировка по возрасту:");
-                    showPersons(lastNames, firstNames, surNames, ages, genders, SortBy.AGE);
-                    System.out.println("-----------------");
-                    System.out.println("Сортировка по возрасту и полу:");
-                    showPersons(lastNames, firstNames, surNames, ages, genders, SortBy.AGE_AND_GENDER);
-                    break;
-                }
-            }
-            // Добалвение
-            if (add) {
-                String[] fullnameArr = inputFields[0].split(" ");
-
-                lastNames.add(fullnameArr[0]);
-                // Ловим ошибки, если пользвоатель ввел не все данные в ФИО.
-                // если что-то пустое вводим пустую строку.
-                try {
-                    firstNames.add(fullnameArr[1]);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    firstNames.add("");
-                }
-                try {
-                    surNames.add(fullnameArr[2]);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    surNames.add("");
-                }
-                // Вводим в поле пол цифру 1 или 2. чтобы не ошибиться в вводе данных.
-                // Если человек ввел дургие данные. вставляем пустую строку.
-                switch (inputFields[1]) {
-                    case "1":
-                        genders.add("мужской");
-                        break;
-                    case "2":
-                        genders.add("женский");
-                        break;
-                    default:
-                        genders.add("");
-                        break;
-                }
-
-                ages.add(getDigit(inputFields[2]));
-            }
-        }
-        scanner.close();
+        task_1();
+        task_3();
     }
 
-    // Показываем списко не отсортиованный
-    public static void showPersons(ArrayList<String> lastNames, ArrayList<String> firstNames,
-            ArrayList<String> surNames,
-            ArrayList<Integer> ages, ArrayList<String> genders, SortBy sortBy) {
+    public static void task_1() {
+        LinkedList<Integer> ll = new LinkedList<>(Arrays.asList(1, 2, 3, 4, 5));
+        System.out.println(ll);
+        LinkedList<Integer> ll_reverse = reverseLinkedList(ll);
+        System.out.println(ll_reverse);
+    }
 
-        int[] indexes = getDefaultIndexes(ages.size());
-        switch (sortBy) {
-            case AGE:
-                indexes = getSortAgesIndexes(ages);
+    private static LinkedList<Integer> reverseLinkedList(LinkedList<Integer> ll) {
+        LinkedList<Integer> result = new LinkedList<>();
+        for (int i = ll.size() - 1; i >= 0; i--) {
+            result.add(ll.get(i));
+        }
+        return result;
+    }
+
+    public static void task_3() {
+        calc();
+    }
+
+    // Simple Calculator
+    // Не делаем проверок на не корректные значения.
+    // Считаем, что все введено верно.
+    public static void calc() {
+        String allow_deistvie = "*/-+<0"; // Возможные действия нашего калькулятора
+        System.out.println("Калькулятор.");
+        System.out.println("При выборе действия:");
+        System.out.println("Нажмите '0', чтобы выйти из калькулятора");
+        System.out.println("Нажмите '<', чтобы отменить последнюю операцию");
+        System.out.println("Нажмите '+ - / *', для выбора арифметической операции.");
+        LinkedList<Double> results = new LinkedList<>();
+
+        while (true) {
+            // запрос первого числа, если небыло еще действий
+            double a = (results.size() > 0) ? results.getLast()
+                    : Double.parseDouble(inputData(scanner, "Введите первое число"));
+
+            // Проверка, что введены разрешенные действия
+            String deistvie = "";
+            boolean cicle = true;
+            while (cicle) {
+                deistvie = inputData(scanner, "Введите действие");
+                cicle = !(allow_deistvie.contains(deistvie));
+                if (cicle)
+                    System.out.println("Действия могут быть только '+ - / * < 0'\nПовторите ввод.");
+            }
+
+            if (deistvie.equals("0"))
                 break;
-            case AGE_AND_GENDER:
-                indexes = getSortAGIndexes(ages, genders);
+            if (deistvie.equals("<")) {
+                if (results.size() > 0)
+                    results.removeLast();
+                if (results.size() > 0)
+                    System.out.println("Результат: " + results.getLast());
+                continue;
+            }
+
+            // Проверяем, если результатов пока не было, то ставим результатом первое число
+            if (results.size() == 0)
+                results.add(a);
+
+            // Проверка, если действие деление и второе число введено 0, то запрос ввод
+            // нового числа.
+            cicle = true;
+            double b = 0;
+            while (cicle) {
+                b = Double.parseDouble(inputData(scanner, "Введите второе число"));
+                cicle = ((b == 0) & (deistvie.contains("/")));
+                if (cicle)
+                    System.out.println("Делить на ноль нельзя.\nПовторите ввод второго числа.");
+            }
+
+            results.add(Calculate(a, b, deistvie));
+            System.out.println("Результат: " + results.getLast());
+        }
+    }
+
+    // Simple Calculator
+    private static double Calculate(double a, double b, String deistvie) {
+        double result = 0;
+        switch (deistvie) {
+            case "*":
+                result = a * b;
                 break;
-            case NONE:
+            case "/":
+                result = a / b; // проверка деления на ноль сделана на этаппе ввода чисел.
+                break;
+            case "+":
+                result = a + b;
+                break;
+            case "-":
+                result = a - b;
                 break;
         }
-        for (int index : indexes) {
-            System.out.println(lastNames.get(index)
-                    + ((firstNames.get(index).length() > 0) ? (" " + firstNames.get(index).charAt(0) + ".") : "")
-                    + ((surNames.get(index).length() > 0) ? (surNames.get(index).charAt(0) + ". ") : " ")
-                    + ages.get(index) + " " + genders.get(index));
-        }
+        return result;
     }
 
     // Ввод данных с запросом 'text'
     public static String inputData(Scanner scanner, String text) {
         System.out.print(text + ": ");
         return scanner.nextLine();
-    }
-
-    // Построение индекса по умолчанию
-    private static int[] getDefaultIndexes(int count) {
-        int[] indexes = new int[count];
-        for (int i = 0; i < count; i++) {
-            indexes[i] = i;
-        }
-        return indexes;
-    }
-
-    // Сортируем индексы по возрасту
-    private static int[] getSortAGIndexes(ArrayList<Integer> ages, ArrayList<String> genders) {
-        int[] indexes = getDefaultIndexes(ages.size());
-
-        boolean isSorted = false;
-        while (!isSorted) {
-            isSorted = true;
-            for (int i = 0; i < indexes.length - 1; i++) {
-                // либо по полу, если они разные и не в том порядке
-                // либо по возрасту, если пол один
-                if ((genders.get(indexes[i]).toLowerCase().equals("женский")
-                        && genders.get(indexes[i + 1]).toLowerCase().equals("мужской"))
-                        || ((genders.get(indexes[i]).equals(genders.get(indexes[i + 1])))
-                                && (ages.get(indexes[i]) > ages.get(indexes[i + 1])))) {
-                    isSorted = false;
-                    int tmp = indexes[i];
-                    indexes[i] = indexes[i + 1];
-                    indexes[i + 1] = tmp;
-                }
-            }
-        }
-
-        return indexes;
-    }
-
-    // Сортируем индексы по возрасту и полу
-    private static int[] getSortAgesIndexes(ArrayList<Integer> ages) {
-        int[] indexes = getDefaultIndexes(ages.size());
-
-        boolean isSorted = false;
-        while (!isSorted) {
-            isSorted = true;
-            for (int i = 0; i < indexes.length - 1; i++) {
-                if (ages.get(indexes[i]) > ages.get(indexes[i + 1])) {
-                    isSorted = false;
-                    int tmp = indexes[i];
-                    indexes[i] = indexes[i + 1];
-                    indexes[i + 1] = tmp;
-                }
-            }
-        }
-
-        return indexes;
-    }
-
-    // Переводим возраст из строки в цифру. Если введены не корректные данные
-    // возвращаем 0
-    private static int getDigit(String str) throws NumberFormatException {
-        try {
-            return Integer.parseInt(str);
-        } catch (NumberFormatException e) {
-            return 0;
-        }
     }
 }
