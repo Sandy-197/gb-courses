@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class homework_5 {
-    public static HashMap<String, ArrayList<String>> phoneBook = new HashMap<>();
+    private static HashMap<String, ArrayList<String>> phoneBook = new HashMap<>();
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
