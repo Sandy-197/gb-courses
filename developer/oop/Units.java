@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 abstract public class Units implements InGameInterface {
     public String name; // название юнита
     public int healthPoints; // общее здоровье, начальное значение всегда 100%
@@ -7,9 +9,10 @@ abstract public class Units implements InGameInterface {
     public int initiative; // инициатива, порядок атаки
     public int step; // кол-во клеток, на которое может передвигаться юнит
     public boolean canHealth; // может ли юнит лечить
+    public Coordinates coordinates;
 
     public Units(String name, int shieldPoints, int attackPoints, int attackStep, int initiative, int step,
-            boolean canHealth) {
+            boolean canHealth, int x, int y) {
         this.name = name;
         this.healthPoints = 100;
         this.shieldPoints = shieldPoints;
@@ -18,6 +21,7 @@ abstract public class Units implements InGameInterface {
         this.initiative = initiative;
         this.step = step;
         this.canHealth = canHealth;
+        this.coordinates = new Coordinates(x, y);
     }
 
     @Override
@@ -25,7 +29,17 @@ abstract public class Units implements InGameInterface {
         return this.name;
     }
 
-    public void step() {
-
+    public Units nearest(ArrayList<Units> unit) {
+        double nearestDistance = Double.MAX_VALUE;
+        int nearestUnit = 0;
+        for (int i = 0; i < unit.size(); i++) {
+            double cd = coordinates.countDistance(unit.get(i).coordinates);
+            if (cd < nearestDistance) {
+                nearestDistance = cd;
+                nearestUnit = i;
+            }
+        }
+        return unit.get(nearestUnit);
     }
+
 }

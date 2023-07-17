@@ -11,56 +11,63 @@ public class Program {
     public static void hw2() {
 
         int countInTeam = 10; // Кол-во персонажей в команде
-        ArrayList<Units> teamOne = generateTeam(countInTeam);
-        ArrayList<Units> teamTwo = generateTeam(countInTeam);
-        
+        ArrayList<Units> teamOne = generateTeam(countInTeam, true);
+        ArrayList<Units> teamTwo = generateTeam(countInTeam, false);
+
         System.out.println("Team One Members:");
         for (Units units : teamOne) {
-            System.out.println(units.getInfo());
+            System.out.println(units.getName());
         }
         System.out.println("----------------");
         System.out.println("Team Two Members:");
         for (Units units : teamTwo) {
-            System.out.println(units.getInfo());
-        }
-
-        System.out.println("Team One Members Name Only:");
-        for (Units units : teamOne) {
             System.out.println(units.getName());
         }
         System.out.println("----------------");
-        System.out.println("Team Two Members Name Only:");
-        for (Units units : teamTwo) {
-            System.out.println(units.getName());
-        }
+        // вывод как бы поля 10х10
+        // System.out.print("|");
+        // for (Units units : teamOne) {
+        //     System.out.print(units.getName().charAt(0) + "|");
+        // }
+
+        // for (int i = 0; i < 8; i++) {
+        //     System.out.print("\n| | | | | | | | | | |");
+        // }
+
+        // System.out.println();
+        // System.out.print("|");
+        // for (Units units : teamTwo) {
+        //     System.out.print(units.getName().charAt(0) + "|");
+        // }
+        teamOne.forEach(unit -> unit.step(teamTwo));
     }
 
-    // Генератор команд 
-    private static ArrayList<Units> generateTeam(int countInTeam) {
+    // Генератор команд
+    private static ArrayList<Units> generateTeam(int countInTeam, boolean numOfTeam) {
         ArrayList<Units> team = new ArrayList<>();
         for (int i = 0; i < countInTeam; i++) {
             HeroTypes ht = HeroTypes.values()[new Random().nextInt(HeroTypes.values().length)];
             switch (ht) {
                 case Archer:
-                    team.add(new Archer(50, 15, 2, 4, 1, 10));
+                    team.add(new Archer(50, 15, 2, 4, 1, 10, i + 1, (numOfTeam ? 1 : 10)));
                     break;
                 case Shooter:
-                    team.add(new Shooter(100, 20, 3, 5, 1, 10));
+                    team.add(new Shooter(100, 20, 3, 5, 1, 10, i + 1, (numOfTeam ? 1 : 10)));
                     break;
                 case Spearman:
-                    team.add(new Spearman(25, 15, 3, 4, 1, 10));
+                    team.add(new Spearman(25, 15, 3, 4, 1, 10, i + 1, (numOfTeam ? 1 : 10)));
                     break;
                 case Rogue:
-                    team.add(new Rogue(25, 10, 1, 3, 1));
+                    team.add(new Rogue(25, 10, 1, 3, 1, i + 1, (numOfTeam ? 1 : 10)));
                     break;
                 case Mage:
-                    team.add(new Mage(0, 5, 1, 2, 1, 100));
+                    team.add(new Mage(0, 5, 1, 2, 1, 100, i + 1, (numOfTeam ? 1 : 10)));
                     break;
                 case Monk:
-                    team.add(new Monk(0, 1, 25));
+                    team.add(new Monk(0, 1, 25, i + 1, (numOfTeam ? 1 : 10)));
                     break;
                 case Peasant:
-                    team.add(new Peasant(0, 1, 10, 10, 10));
+                    team.add(new Peasant(0, 1, 10, 10, 10, i + 1, (numOfTeam ? 1 : 10)));
                     break;
             }
         }

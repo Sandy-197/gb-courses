@@ -1,5 +1,11 @@
+import java.util.ArrayList;
+
 public interface InGameInterface {
-    void step();
+    void step(ArrayList<Units> units);
+
     String getInfo();
+
     String getName();
+
+    Coordinates GetCoordinates();
 }
