@@ -10,11 +10,11 @@ public class Program {
     public static void main(String[] args) {
         // hw1(); // Домашка 1
         // hw2(); // Домашка 2
-        hw3(); // Домашка 3
+        hw4(); // Домашка 4
     }
 
-    public static void hw3() {
-        System.out.println("Домашка 3:");
+    public static void hw4() {
+        System.out.println("Домашка 4:");
 
         teamOne = generateTeam(countInTeam, true);
         teamTwo = generateTeam(countInTeam, false);
