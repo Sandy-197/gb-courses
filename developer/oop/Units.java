@@ -29,6 +29,11 @@ abstract public class Units implements InGameInterface {
         return this.name;
     }
 
+    @Override
+    public Coordinates getCoordinates() {
+        return this.coordinates;
+    }
+
     public Units nearest(ArrayList<Units> unit) {
         double nearestDistance = Double.MAX_VALUE;
         int nearestUnit = 0;
@@ -40,6 +45,15 @@ abstract public class Units implements InGameInterface {
             }
         }
         return unit.get(nearestUnit);
+    }
+
+    public boolean setDamage(int damage) {
+        this.healthPoints -= damage;
+        if (this.healthPoints <= 0) {
+            this.healthPoints = 0;
+            return true;
+        }
+        return false;
     }
 
 }

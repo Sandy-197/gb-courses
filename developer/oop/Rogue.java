@@ -12,9 +12,9 @@ public class Rogue extends Units {
     }
 
     @Override
-    public void step(ArrayList<Units> units)
+    public void step(ArrayList<Units> enemyTeam, ArrayList<Units> myTeam)
     {
-        Units tmp = nearest(units);
+        Units tmp = nearest(enemyTeam);
         System.out.println(this.name + " nearst " +tmp.name+ " distance is "+ coordinates.countDistance(tmp.coordinates));
     }
 }

@@ -13,13 +13,13 @@ public class Spearman extends Units {
 
     @Override
     public String getInfo() {
-        return this.name + " имеет " + this.spearCount + " копий на текущий момент";
+        return this.name + " имеет " + "З:" + this.healthPoints + ", К:" + this.spearCount;
     }
 
     @Override
-    public void step(ArrayList<Units> units)
-    {
-        Units tmp = nearest(units);
-        System.out.println(this.name + " nearst " +tmp.name+ " distance is "+ coordinates.countDistance(tmp.coordinates));
+    public void step(ArrayList<Units> enemyTeam, ArrayList<Units> myTeam) {
+        Units tmp = nearest(enemyTeam);
+        System.out.println(
+                this.name + " nearst " + tmp.name + " distance is " + coordinates.countDistance(tmp.coordinates));
     }
 }

@@ -10,13 +10,13 @@ public class Monk extends Units {
 
     @Override
     public String getInfo() {
-        return this.name + " имеет " + this.addHealthPoint + " здорове на текущий момент";
+        return this.name + " имеет " + "З:" + this.healthPoints;
     }
 
     @Override
-    public void step(ArrayList<Units> units)
+    public void step(ArrayList<Units> enemyTeam, ArrayList<Units> myTeam)
     {
-        Units tmp = nearest(units);
+        Units tmp = nearest(enemyTeam);
         System.out.println(this.name + " nearst " +tmp.name+ " distance is "+ coordinates.countDistance(tmp.coordinates));
     }
 }
