@@ -59,9 +59,23 @@ public class homework_6 {
             return Objects.equals(this.forEquals(), temp.forEquals());
         }
 
+        // Для проверки первой части задания надо поставить комментарии на строку с 64
+        // по 68
+        // @Override
+        // public int hashCode() {
+        // return Objects.hash(this.name, this.color, this.breed, this.hasTail,
+        // this.sex, this.age);
+        // }
+
+        // Можно использовать такой метов. так как мы в forEquals собираем строку из
+        // всех параметров для проверки равности обхъектов.
+        // Также можно использовать и для вычисления hash кода. Так как кол-во полей
+        // может расти, и проще их пенять в одном методе forEquals, чем во всех
+        // Только надо убрать комметарии со строк ниже 74 - 77, и поставить со строки
+        // 64-68.
         @Override
         public int hashCode() {
-            return Objects.hash(this.name, this.color, this.breed, this.hasTail, this.sex, this.age);
+            return Objects.hash(this.forEquals());
         }
 
     }
@@ -79,7 +93,7 @@ public class homework_6 {
         System.out.println(cat3.toString());
 
         System.out.println(
-                "Добавляем всех котов в HashSet.\nПечатаем резулььтат добавления. дубль сраузу не добавиться.");
+                "Добавляем всех котов в HashSet.\nПечатаем резулььтат добавления");
         System.out.println("Добавляем кота:" + cat.toString() + " Результат: "
                 + (catsSet.add(cat) ? "Добавлен." : " Не добавлен."));
         System.out.println("Добавляем кота:" + cat2.toString() + " Результат: "
@@ -92,14 +106,15 @@ public class homework_6 {
             System.out.println(catTemp.toString());
         }
 
-        System.out.println("Выводим hashCode для котов:");
-        System.out.println(cat.name + "-" + cat.hashCode());
-        System.out.println(cat2.name + "-" + cat2.hashCode());
-        System.out.println(cat3.name + "-" + cat3.hashCode());
-
         System.out.println("Выводим проверку равенства котов:");
-        System.out.println("Первый кот равен второму? - " + (cat.equals(cat2) ? "Да" : "Нет"));
-        System.out.println("Первый кот равен третьему? - " + (cat.equals(cat3) ? "Да" : "Нет"));
+        System.out.println("Кот " + cat.name + " равен коту " + cat2.name + "? - " + (cat.equals(cat2) ? "Да" : "Нет"));
+        System.out.println("Кот " + cat.name + " равен коту " + cat3.name + "? - " + (cat.equals(cat3) ? "Да" : "Нет"));
 
+        // // Для проверки 1 части задания надо поставить комментарии на строки с 187 -
+        // 110
+        // System.out.println("Выводим hashCode для котов:");
+        // System.out.println(cat.name + "=" + cat.hashCode());
+        // System.out.println(cat2.name + "=" + cat2.hashCode());
+        // System.out.println(cat3.name + "=" + cat3.hashCode());
     }
 }
