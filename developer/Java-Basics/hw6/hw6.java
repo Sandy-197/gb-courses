@@ -47,7 +47,20 @@ class SetImitation<E> {
     public boolean isEmpty() {
         return map.isEmpty();
     }
+    
+    public int hashCode(Object e) {
+        return Objects.hash(e);
+    }
 
+    public boolean isEqual(Object e) {
+
+        boolean isFound = false;
+        Iterator<E> iterator = map.keySet().iterator();
+        while (iterator.hasNext() && !isFound) {
+            isFound = e.toString().equals(iterator.next().toString());
+        }
+        return isFound;
+    }
     public boolean contains(Object num) {
         return map.containsKey(num);
     }
@@ -65,8 +78,9 @@ class SetImitation<E> {
         String result = "";
         Iterator<E> iterator = map.keySet().iterator();
         while (iterator.hasNext()) {
-            result += iterator.next().toString() + " ";
+            result += iterator.next().toString() + "\n";
         }
         return result.strip();
     }
+    
 }
