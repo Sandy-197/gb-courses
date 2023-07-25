@@ -17,8 +17,25 @@ public class Mage extends Units {
 
     @Override
     public void step(ArrayList<Units> enemyTeam, ArrayList<Units> myTeam) {
-        Units tmp = nearest(enemyTeam);
-        System.out.println(
-                this.name + " nearst " + tmp.name + " distance is " + coordinates.countDistance(tmp.coordinates));
+        // ищем в своей команде того, кому хуже всего. и его лечим
+        int health = 100;
+        Units tmp = myTeam.get(0);
+
+        for (Units units : myTeam) {
+            if (!units.state.equals("Dead") && health > units.healthPoints) {
+                health = units.healthPoints;
+                tmp = units;
+            }
+        }
+        if (health < 100) {
+            tmp.setDamage(-this.attackPoints);
+            this.state = "Busy";
+            System.out.println(
+                    this.name + " лечит " + tmp.name + " Здоровье стало:" + tmp.healthPoints);
+        }
+        else
+        {
+            // Можно прописать атаку. если не нашли кого лечить.
+        }
     }
 }

@@ -6,11 +6,55 @@ public class Program {
     private static int countInTeam = 10; // Кол-во персонажей в команде
     private static ArrayList<Units> teamOne;
     private static ArrayList<Units> teamTwo;
+    private static ArrayList<Units> allTeams = new ArrayList<>();
 
     public static void main(String[] args) {
         // hw1(); // Домашка 1
         // hw2(); // Домашка 2
-        hw4(); // Домашка 4
+        // hw4(); // Домашка 4
+        hw5();
+    }
+
+    public static ArrayList<Units> GetTeamOne() {
+        return teamOne;
+    }
+
+    public static ArrayList<Units> GetTeamTwo() {
+        return teamTwo;
+    }
+
+    public static ArrayList<Units> GetAllTeams() {
+        return allTeams;
+    }
+
+    public static void hw5() {
+        System.out.println("Домашка 5:");
+
+        teamOne = generateTeam(countInTeam, true);
+        teamTwo = generateTeam(countInTeam, false);
+        allTeams.addAll(teamOne);
+        allTeams.addAll(teamTwo);
+        allTeams.sort((o1, o2) -> o2.initiative - o1.initiative);
+
+        System.out.println("AllTeam Members Sort by Initiative:");
+        for (Units units : allTeams) {
+            System.out.println(units.name + " инициатива " + units.initiative);
+        }
+
+        View.view();
+        for (Units units : allTeams) {
+            if (teamTwo.contains(units)
+                    && (!(units instanceof Peasant)
+                            || (units instanceof Peasant && ((Peasant) units).inTeam == 2))) {
+                // здесь проверяем, если unit из 2 команды, и он не Крестьянин,
+                // либо если крестьянин, но принадлежит 2 команде,
+                // то делаем ход
+                units.step(teamOne, teamTwo);
+            } else {
+                units.step(teamTwo, teamOne);
+            }
+        }
+        View.view();
     }
 
     public static void hw4() {
@@ -18,6 +62,14 @@ public class Program {
 
         teamOne = generateTeam(countInTeam, true);
         teamTwo = generateTeam(countInTeam, false);
+        allTeams.addAll(teamOne);
+        allTeams.addAll(teamTwo);
+        allTeams.sort((o1, o2) -> o2.initiative - o1.initiative);
+
+        System.out.println("AllTeam Members Sort by Initiative:");
+        for (Units units : allTeams) {
+            System.out.println(units.name + " инициатива " + units.initiative);
+        }
 
         System.out.println("Team One Members:");
         for (Units units : teamOne) {
@@ -35,6 +87,14 @@ public class Program {
             if (unit.getName().equals("Лучник")) {
                 System.out.println("Лучник ходит");
                 unit.step(teamTwo, teamOne);
+            }
+        }
+
+        for (Units unit : teamTwo) {
+            // System.out.println(unit.getName());
+            if (unit.getName().equals("Маг")) {
+                System.out.println("Маг лечит");
+                unit.step(teamOne, teamTwo);
             }
         }
 
@@ -63,22 +123,6 @@ public class Program {
             System.out.println(units.name);
         }
         System.out.println("----------------");
-        // вывод как бы поля 10х10
-        // System.out.print("|");
-        // for (Units units : teamOne) {
-        // System.out.print(units.getName().charAt(0) + "|");
-        // }
-
-        // for (int i = 0; i < 8; i++) {
-        // System.out.print("\n| | | | | | | | | | |");
-        // }
-
-        // System.out.println();
-        // System.out.print("|");
-        // for (Units units : teamTwo) {
-        // System.out.print(units.getName().charAt(0) + "|");
-        // }
-        // Вотрая домашка
         teamOne.forEach(unit -> unit.step(teamTwo, teamOne));
     }
 
@@ -130,7 +174,7 @@ public class Program {
                         team.add(new Monk(0, 1, 25, i + 1, 1));
                         break;
                     case 3:
-                        team.add(new Peasant(0, 1, 10, 10, 10, i + 1, 1));
+                        team.add(new Peasant(0, 1, 10, 10, 10, 1, i + 1, 1));
                         break;
                 }
             else
@@ -145,7 +189,7 @@ public class Program {
                         team.add(new Mage(0, 5, 1, 2, 1, 100, i + 1, 10));
                         break;
                     case 3:
-                        team.add(new Peasant(0, 1, 10, 10, 10, i + 1, 10));
+                        team.add(new Peasant(0, 1, 10, 10, 10, 2, i + 1, 10));
                         break;
                 }
         }
@@ -159,7 +203,7 @@ public class Program {
         Rogue rogueUnit = new Rogue(0, 10, 1, 3, 1, 1, 1);
         Mage mageUnit = new Mage(0, 5, 1, 2, 1, 100, 1, 1);
         Monk monkUnit = new Monk(0, 1, 25, 1, 1);
-        Peasant peasantUnit = new Peasant(0, 1, 10, 10, 10, 1, 1);
+        Peasant peasantUnit = new Peasant(0, 1, 10, 10, 10, 1, 1, 1);
         System.out.println(archerUnit.name + " " + archerUnit.healthPoints);
         System.out.println(shooterUnit.name + " " + shooterUnit.healthPoints);
         System.out.println(spearmanUnit.name + " " + spearmanUnit.healthPoints);

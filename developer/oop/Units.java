@@ -10,6 +10,7 @@ abstract public class Units implements InGameInterface {
     public int step; // кол-во клеток, на которое может передвигаться юнит
     public boolean canHealth; // может ли юнит лечить
     public Coordinates coordinates;
+    public String state = "Stand";
 
     public Units(String name, int shieldPoints, int attackPoints, int attackStep, int initiative, int step,
             boolean canHealth, int x, int y) {
@@ -51,8 +52,11 @@ abstract public class Units implements InGameInterface {
         this.healthPoints -= damage;
         if (this.healthPoints <= 0) {
             this.healthPoints = 0;
+            this.state = "Died";
             return true;
         }
+        if (this.healthPoints > 100)
+            this.healthPoints = 100;
         return false;
     }
 
