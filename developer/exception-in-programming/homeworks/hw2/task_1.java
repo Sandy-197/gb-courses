@@ -8,6 +8,7 @@ public class task_1 {
         double result = GetDooble(
                 "Введите дробное число, для отеделения дробной части используйте точку, пример (2.52): ");
         System.out.println("Спасибо. Вы ввели: " + result);
+        scanner.close();
     }
 
     public static double GetDooble(String text) {
