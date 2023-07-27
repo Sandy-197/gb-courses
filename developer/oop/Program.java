@@ -168,7 +168,7 @@ public class Program {
                         team.add(new Archer(0, 15, 2, 4, 1, 10, i + 1, 1));
                         break;
                     case 1:
-                        team.add(new Shooter(0, 20, 3, 5, 1, 10, i + 1, 1));
+                        team.add(new Footsoldier(0, 20, 3, 5, 1, 10, i + 1, 1));
                         break;
                     case 2:
                         team.add(new Monk(0, 1, 25, i + 1, 1));
@@ -198,7 +198,7 @@ public class Program {
 
     public static void hw1() {
         Archer archerUnit = new Archer(0, 15, 2, 4, 1, 10, 1, 1);
-        Shooter shooterUnit = new Shooter(0, 20, 3, 5, 1, 10, 1, 1);
+        Footsoldier shooterUnit = new Footsoldier(0, 20, 3, 5, 1, 10, 1, 1);
         Spearman spearmanUnit = new Spearman(0, 15, 3, 4, 1, 10, 1, 1);
         Rogue rogueUnit = new Rogue(0, 10, 1, 3, 1, 1, 1);
         Mage mageUnit = new Mage(0, 5, 1, 2, 1, 100, 1, 1);
